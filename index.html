@@ -5,6 +5,7 @@
   <title>ice</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" src="getUserMedia.js"></script>
 </head>
 
 <style type="text/css">
@@ -201,15 +202,32 @@
     var constraints = { video: { facingMode: "user" }, audio: false };
 
     var video = document.getElementById('video');
+
+    navigator.getUserMedia  = navigator.getUserMedia ||
+                            navigator.webkitGetUserMedia ||
+                            navigator.mozGetUserMedia ||
+                            navigator.msGetUserMedia;
  // 得到摄像头api
- if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
- // 如果我们想要立即显示拍照，请设置 { video: true }
- navigator.mediaDevices.getUserMedia(constraints).then(
-   function(stream) {
-     //video.src = window.URL.createObjectURL(stream);
-     video.srcObject = stream;
-     video.play();
-     });
+//  if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+//  // 如果我们想要立即显示拍照，请设置 { video: true }
+//  navigator.mediaDevices.getUserMedia(constraints).then(
+//    function(stream) {
+//      //video.src = window.URL.createObjectURL(stream);
+//      video.srcObject = stream;
+//      video.play();
+//      });
+
+var errorCallback = function(e) {
+    console.log('Reeeejected!', e);
+    };
+
+     if (navigator.getUserMedia) {
+    navigator.getUserMedia(constraints, function(stream) {
+      video.srcObject = stream;
+    }, errorCallback);
+} else {
+    // video.src = 'somevideo.webm'; // fallback.
+}
 
     //  setTimeout(() => {
     //   showPage2();
@@ -234,7 +252,7 @@
 //  document.getElementById("snap").addEventListener("click", function() {
 //  context.drawImage(video, 0, 0, 640, 480);
 //  });
-  }
+  // }
 
 </script>
 
