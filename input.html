@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>ice</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<script>
+    function readURL(input) {
+        console.log("icelveoboa")
+        console.log(input.files[0]);
+    };
+    
+
+    function loadFile(event) {
+	var image = document.getElementById('output');
+    var file = event.target.files[0];
+	image.src = URL.createObjectURL(file);
+    localStorage.setItem("imagefile",file);
+    var temp = localStorage.getItem("imagefile");
+    image.src = URL.createObjectURL(temp);
+    };
+</script>
+<body>
+   姓名 <input type="text" />
+   <input type='file' onchange="loadFile(event);" />
+   <img id="output" width="200" />	
+    <a href="index.html">GOTO</a>
+</body>
+</html>
