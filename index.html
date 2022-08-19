@@ -198,21 +198,33 @@
     page2.hidden = true;
     camera.hidden = false;
 
+    var constraints = { video: { facingMode: "user" }, audio: false };
+
     var video = document.getElementById('video');
  // 得到摄像头api
  if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
  // 如果我们想要立即显示拍照，请设置 { video: true }
- navigator.mediaDevices.getUserMedia({ video: true }).then(
+ navigator.mediaDevices.getUserMedia(constraints).then(
    function(stream) {
      //video.src = window.URL.createObjectURL(stream);
      video.srcObject = stream;
      video.play();
      });
 
-     setTimeout(() => {
-      showPage2();
-     }, 5000);
+    //  setTimeout(() => {
+    //   showPage2();
+    //   var strem = video.srcObject;
+    //   stopBothVideoAndAudio(strem);
+    //  }, 5000);
  }
+
+ function stopBothVideoAndAudio(stream) {
+    stream.getTracks().forEach(function(track) {
+        if (track.readyState == 'live') {
+            track.stop();
+        }
+    });
+}
  
  // 用于拍摄快照的元素,添加canvas里面
 //  var canvas = document.getElementById('canvas');
