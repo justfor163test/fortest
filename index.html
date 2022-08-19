@@ -183,6 +183,29 @@
     avatar.src = URL.createObjectURL(file.files[0]);
   }
 
+  function startCamera(){
+    var video = document.getElementById('video');
+ // 得到摄像头api
+ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+ // 如果我们想要立即显示拍照，请设置 { video: true }
+ navigator.mediaDevices.getUserMedia({ video: true }).then(
+   function(stream) {
+     //video.src = window.URL.createObjectURL(stream);
+     video.srcObject = stream;
+     video.play();
+     });
+ }
+ 
+ // 用于拍摄快照的元素,添加canvas里面
+ var canvas = document.getElementById('canvas');
+ var context = canvas.getContext('2d');
+ var video = document.getElementById('video');
+ // 触发的照片
+ document.getElementById("snap").addEventListener("click", function() {
+ context.drawImage(video, 0, 0, 640, 480);
+ });
+  }
+
 </script>
 
 
@@ -190,8 +213,14 @@
   <div id="page1">
     姓名 <input type="text" />
     <input type='file' id = "file"/>
-    <input type="file" accept="image/*" capture="camera">
+    <br/>
+    <!-- <input type=file id=browsefile accept="image/*" capture="camera" style="visibility:hidden;width: 10px;"> -->
+     <input type=button id=filebutton value="拍照" onclick="browsefile.click()">
     <button onclick="showPage2()">Goto</button>
+  </div>
+  <div id="camera">
+    <video id="video" width="640" height="480" autoplay></video>
+ <!-- <canvas id="canvas" width="640" height="480"></canvas> -->
   </div>
   <div id ="page2">
     <div class="top">
