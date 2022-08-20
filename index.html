@@ -39,7 +39,7 @@
     margin-left: 10px;
     margin-top: 10px;
     margin-right: 10px;
-    height: 420px;
+    /* height: 420px; */
     background-color: #9CBD92;
   }
 
@@ -102,6 +102,7 @@
     width: 100px;
     height: 20px;
     display: inline-block;
+    vertical-align: top;
   }
 
   .label2 {
@@ -146,6 +147,9 @@
     width: 100%;
     height: 100%;
   }
+  .page1{
+    margin-top: 50px;
+  }
 </style>
 
 <script type="text/javascript">
@@ -189,6 +193,31 @@
     var file = document.getElementById("file");
     var avatar = document.getElementById("avatar");
     avatar.src = URL.createObjectURL(file.files[0]);
+    var topavatar = document.getElementById("topavatar");
+    topavatar.src = URL.createObjectURL(file.files[0]);
+    var dirdoor = document.getElementById("dirdoor");
+    dirdoor.innerHTML = get_radio("dir");
+    var door2 = document.getElementById("door2");
+    var door2str = get_radio("door");
+    if(get_radio("dir") == "您已离开"){
+      door2str = door2str +","+"再见!";
+    }
+    door2.innerHTML = door2str;
+    var name = document.getElementById("name");
+    var nameinput = document.getElementById("nameinput");
+    name.innerHTML = nameinput.value;
+    var numberinput = document.getElementById("numberinput");
+    var number = document.getElementById("number");
+    number.innerHTML = numberinput.value;
+  }
+
+  function get_radio(obj_name){
+    var obj = document.getElementsByName(obj_name);
+    for(i = 0; i < obj.length;i++){
+      if(obj[i].checked){
+        return obj[i].value;
+      }
+    }
   }
 
   function startCamera(){
@@ -258,13 +287,20 @@ var errorCallback = function(e) {
 
 
 <body>
-  <div id="page1">
-    姓名 <input type="text" />
-    <input type='file' id = "file"/>
+  <div id="page1" class="page1">
+    姓名 <input id="nameinput" type="text" />
     <br/>
-    <!-- <input type=file id=browsefile accept="image/*" capture="camera" style="visibility:hidden;width: 10px;"> -->
-     <!-- <input type=button id=filebutton value="拍照" onclick="browsefile.click()"> -->
-     <input type=button id=filebutton value="拍照" onclick="startCamera()">
+    学工号 <input id="numberinput" type="text" />
+    <br/>
+    <input type="radio" name ="dir" value = "欢迎进入">欢迎进入  <input type="radio" name ="dir" value="您已离开">您已离开
+    <br/>
+    <input type="radio" name ="door" value="西门">西门 <input type="radio" name ="door" value="东门">东门 <input type="radio" name ="door" value="北门">北门
+    <br/>
+    头像 <input type='file' id = "file"/>
+    <br/>
+    <input type=file id=browsefile accept="image/*" capture="camera" style="visibility:hidden;width: 10px;">
+     <input type=button id=filebutton value="拍照" onclick="browsefile.click()">
+     <!-- <input type=button id=filebutton value="拍照" onclick="startCamera()"> -->
     <button onclick="showPage2()">Goto</button>
   </div>
   <div id="camera">
@@ -273,8 +309,8 @@ var errorCallback = function(e) {
   </div>
   <div id ="page2">
     <div class="top">
-      <img class="topimage"src="arrow.png"></img>
-      <img class="topimage" src="timg.jpeg"></img>
+      <img class="topimage" src="arrow.png"></img>
+      <img class="topimage" id="topavatar"></img>
       <img class="topimage" src="ring.png"></img>
       
     </div>
@@ -291,7 +327,7 @@ var errorCallback = function(e) {
         </div>
         <div class="dash"></div>
         <div class="label1">验证结果</div>
-        <div class="label2">欢迎进入<span style="color: #1410D7;">卫津路校区</span><span style="color: #6A1F7B;">西门</span></div>
+        <div class="label2"><span id="dirdoor">欢迎进入</span><span style="color: #1410D7;">卫津路校区</span><span id="door2" style="color: #6A1F7B;">西门</span></div>
         <div class="dash"></div>
         <div class="label1">限定人数规模</div>
         <div class="label2">无限制</div>
@@ -300,10 +336,10 @@ var errorCallback = function(e) {
         <div class="label2">1467</div>
         <div class="dash"></div>
         <div class="label1">姓名</div>
-        <div class="label2">ice(ice)</div>
+        <div id="name" class="label2">ice(ice)</div>
         <div class="dash"></div>
         <div class="label1">学工号</div>
-        <div class="label2">1019209333</div>
+        <div id="number" class="label2" >1019209333</div>
         <div class="dash"></div>
         <div class="label1">人员类型</div>
         <div class="label2">学生</div>
