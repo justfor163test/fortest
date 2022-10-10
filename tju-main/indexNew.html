@@ -55914,19 +55914,18 @@
                                 <span style="color: blue;">校验成功</span>
                               </div>
                               <div class="b code-item1">
-                                <span style="color:black;">2019204124</span>
+                                <span id="exc11" style="color:black;">2019204124</span>
+                              </div>
+                              <div class="b code-item1">
+                                <span id="exc22">王海燕</span>
                                 
                               </div>
                               <div class="b code-item1">
-                                <span>王海燕</span>
+                                <span id="exc33">理学院</span>
                                 
                               </div>
                               <div class="b code-item1">
-                                <span>理学院</span>
-                                
-                              </div>
-                              <div class="b code-item1">
-                                <span style="color: blue;">卫津路校区</span><span style="color: purple;">东门</span>
+                                <span id ="exc44" style="color: blue;">卫津路校区</span><span id="exc55" style="color: purple;">东门</span>
                               </div>
 
                             </div>
@@ -56200,6 +56199,29 @@
       img.setAttribute('src', imgUrl); // 修改img标签src属性值
       img2.setAttribute('src', imgUrl); // 修改img标签src属性值
     };
+
+    var imgUrl = JSON.parse(localStorage.getItem('str'));
+    var myname = JSON.parse(localStorage.getItem('myname'));
+    var mycollege = JSON.parse(localStorage.getItem('mycollege'));
+    var myid = JSON.parse(localStorage.getItem('myid'));
+    var paddingstyle = JSON.parse(localStorage.getItem('paddingstyle'));
+    var containerstyle = JSON.parse(localStorage.getItem('containerstyle'));
+    var campus = JSON.parse(localStorage.getItem('campus'));
+    var gate = JSON.parse(localStorage.getItem('gate'));           
+    document.getElementById('exc11').innerHTML = myid;
+    document.getElementById("exc22").innerHTML = myname;
+    document.getElementById('exc33').innerHTML = mycollege;
+    document.getElementById('exc44').innerHTML = campus;
+    document.getElementById('exc55').innerHTML = gate;
+    // document.getElementById('exc4').setAttribute('style', paddingstyle);
+    // document.getElementById('exc5').setAttribute('style', containerstyle);
+    var img = document.getElementById('imghead');
+    var img2 = document.getElementById('imghead2');
+    img.setAttribute('src', imgUrl);
+    img2.setAttribute('src', imgUrl);
+
+
+
   </script>
 
 </body>

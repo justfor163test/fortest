@@ -222,15 +222,16 @@
                                                     <input type="text" value="" id="myid">
                                                 </p>
                                                 <p align="center">
+                                                    请选择您要通过的校区：
+                                                </p>
+                                                <p align="center">
+                                                    <input type="text" value="" id="campus">
+                                                </p>
+                                                <p align="center">
                                                     请选择您要通过的校门：
                                                 </p>
                                                 <p align="center">
-                                                    <select id="gate">
-                                                        <option value="1">进入东门</option>
-                                                        <option value="2">离开东门</option>
-                                                        <option value="3">进入西门</option>
-                                                        <option value="4">离开西门</option>
-                                                    </select>
+                                                    <input type="text" value="" id="gate">
                                                 </p>
                                                 <p align="center">
                                                     自定义功能</br>
@@ -279,6 +280,13 @@
             if (JSON.parse(localStorage.getItem('myid') != null)) {
                 document.getElementById('myid').setAttribute('value', JSON.parse(localStorage.getItem('myid')));
             }
+            if (JSON.parse(localStorage.getItem('campus') != null)) {
+                document.getElementById('campus').setAttribute('value', JSON.parse(localStorage.getItem('campus')));
+            }
+            if (JSON.parse(localStorage.getItem('gate') != null)) {
+                document.getElementById('gate').setAttribute('value', JSON.parse(localStorage.getItem('gate')));
+            }
+
             if (JSON.parse(localStorage.getItem('str') != null)) {
                 document.getElementById('demo').setAttribute('src', JSON.parse(localStorage.getItem('str')));
             }
@@ -296,6 +304,10 @@
                 localStorage.setItem('mycollege', JSON.stringify(college));
                 var id = document.getElementById("myid").value;
                 localStorage.setItem('myid', JSON.stringify(id));
+                var campus = document.getElementById("campus").value;
+                localStorage.setItem('campus', JSON.stringify(campus));
+                var gate = document.getElementById("gate").value;
+                localStorage.setItem('gate', JSON.stringify(gate));
                 var check = document.getElementsByName("checkbox");
                 if (check[0].checked == true) {
                     localStorage.setItem('paddingstyle', JSON.stringify("padding-top:0px;"));
@@ -309,22 +321,30 @@
                 if (check[1].checked == false) {
                     localStorage.setItem('backhref', JSON.stringify("https://serv.tju.edu.cn/index"));
                 }
-                if (document.getElementById("gate").value == "1") {
-                    window.location.href = 'main.html';
-                    localStorage.setItem('whigate', 'east_enter.html');
-                }
-                if (document.getElementById("gate").value == "2") {
-                    window.location.href = 'main.html';
-                    localStorage.setItem('whigate', 'east_leave.html');
-                }
-                if (document.getElementById("gate").value == "3") {
-                    window.location.href = 'main.html';
-                    localStorage.setItem('whigate', 'west_enter.html');
-                }
-                if (document.getElementById("gate").value == "4") {
-                    window.location.href = 'main.html';
-                    localStorage.setItem('whigate', 'west_leave.html');
-                }
+
+
+                window.location.href = 'main.html';
+
+                // if (document.getElementById("gate").value == "1") {
+                //     window.location.href = 'main.html';
+                //     localStorage.setItem('whigate', 'east_enter.html');
+                //     localStorage.setItem('gate',"1");
+                // }
+                // if (document.getElementById("gate").value == "2") {
+                    
+                //     localStorage.setItem('whigate', 'east_leave.html');
+                //     localStorage.setItem('gate',"2");
+                // }
+                // if (document.getElementById("gate").value == "3") {
+                //     window.location.href = 'main.html';
+                //     localStorage.setItem('whigate', 'west_enter.html');
+                //     localStorage.setItem('gate',"3");
+                // }
+                // if (document.getElementById("gate").value == "4") {
+                //     window.location.href = 'main.html';
+                //     localStorage.setItem('whigate', 'west_leave.html');
+                //     localStorage.setItem('gate',"4");
+                // }
                 alert("使用方法：点击主页下方“扫一扫”按钮，扫描任意二维码即可进入验证界面。");
             }
             document.getElementById("upload_file").onchange = function () {
@@ -353,6 +373,10 @@
                 localStorage.setItem('mycollege', JSON.stringify(college));
                 var id = document.getElementById("myid").value;
                 localStorage.setItem('myid', JSON.stringify(id));
+                var campus = document.getElementById("campus").value;
+                localStorage.setItem('campus', JSON.stringify(campus));
+                var gate = document.getElementById("gate").value;
+                localStorage.setItem('gate', JSON.stringify(gate));
                 var check = document.getElementsByName("checkbox");
                 if (check[0].checked == true) {
                     localStorage.setItem('paddingstyle', JSON.stringify("padding-top:0px;"));
@@ -366,18 +390,29 @@
                 if (check[1].checked == false) {
                     localStorage.setItem('backhref', JSON.stringify("https://serv.tju.edu.cn/index"));
                 }
-                if (document.getElementById("gate").value == "1") {
-                    window.location.href = 'east_enter.html';
-                }
-                if (document.getElementById("gate").value == "2") {
-                    window.location.href = 'east_leave.html';
-                }
-                if (document.getElementById("gate").value == "3") {
-                    window.location.href = 'west_enter.html';
-                }
-                if (document.getElementById("gate").value == "4") {
-                    window.location.href = 'west_leave.html';
-                }
+
+                window.location.href = 'indexNew.html';
+
+                // if (document.getElementById("gate").value == "1") {
+                //     // window.location.href = 'east_enter.html';
+                //     localStorage.setItem('gate',"1");
+                //     window.location.href = 'indexNew.html';
+                // }
+                // if (document.getElementById("gate").value == "2") {
+                //     // window.location.href = 'east_leave.html';
+                //     localStorage.setItem('gate',"2");
+                //     window.location.href = 'indexNew.html';
+                // }
+                // if (document.getElementById("gate").value == "3") {
+                //     // window.location.href = 'west_enter.html';
+                //     localStorage.setItem('gate',"3");
+                //     window.location.href = 'indexNew.html';
+                // }
+                // if (document.getElementById("gate").value == "4") {
+                //     // window.location.href = 'west_leave.html';
+                //     localStorage.setItem('gate',"4");
+                //     window.location.href = 'indexNew.html';
+                // }
             }
             document.getElementById("upload_file").onchange = function () {
                 var str = gen_base64();
