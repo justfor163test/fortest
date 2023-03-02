@@ -228,7 +228,7 @@
                                                     <input type="text" value="" id="campus">
                                                 </p>
                                                 <p align="center">
-                                                    请选择您要通过的校门[1(进入东门)2(离开东门)3(进入西门)4(离开西门)]：
+                                                    请选择您要通过的校门[1(进入东门)2(离开东门)3(进入西门)4(离开西门)5(进入西门)6(离开西门)]：
                                                 </p>
                                                 <p align="center">
                                                     <input type="text" value="" id="gate">
@@ -346,6 +346,16 @@
                     localStorage.setItem('whigate', 'west_leave.html');
                     localStorage.setItem('gate',"4");
                 }
+                if (document.getElementById("gate").value == "5") {
+                    window.location.href = 'main.html';
+                    localStorage.setItem('whigate', 'wicket_enter.html');
+                    localStorage.setItem('gate',"5");
+                }
+                if (document.getElementById("gate").value == "6") {
+                    window.location.href = 'main.html';
+                    localStorage.setItem('whigate', 'wicket_leave.html');
+                    localStorage.setItem('gate',"6");
+                }
                 //alert("使用方法：点击主页下方“扫一扫”按钮，扫描任意二维码即可进入验证界面。");
             }
             document.getElementById("upload_file").onchange = function () {
@@ -412,6 +422,16 @@
                 if (document.getElementById("gate").value == "4") {
                     window.location.href = 'west_leave.html';
                     //localStorage.setItem('gate',"4");
+                    //window.location.href = 'indexNew.html';
+                }
+                if (document.getElementById("gate").value == "5") {
+                    window.location.href = 'wicket_enter.html';
+                    //localStorage.setItem('gate',"5");
+                    //window.location.href = 'indexNew.html';
+                }
+                if (document.getElementById("gate").value == "6") {
+                    window.location.href = 'wicket_leave.html';
+                    //localStorage.setItem('gate',"6");
                     //window.location.href = 'indexNew.html';
                 }
             }
